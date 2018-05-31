@@ -72,7 +72,7 @@ public class home extends javax.swing.JFrame {
 
     private void histogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histogramaActionPerformed
       
-        vista.histograma altaCliente= new vista.histograma();
+      vista.histograma altaCliente= new vista.histograma();
       altaCliente.setVisible(true);
      
     }//GEN-LAST:event_histogramaActionPerformed
