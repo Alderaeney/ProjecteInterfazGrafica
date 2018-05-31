@@ -23,9 +23,7 @@ public class Anagrama {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-
-    }
+    
 
     public static char[] obtenerVectorLetras(String palabra, char[] v) {
         v = new char[palabra.length()];
