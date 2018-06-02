@@ -5,6 +5,20 @@
  */
 package vista;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author link
@@ -14,8 +28,15 @@ public class home extends javax.swing.JFrame {
     /**
      * Creates new form home
      */
+    private boolean loginExitoso = false;
+
     public home() {
         initComponents();
+        this.estadoVisual.setBackground(Color.red);
+        this.informeEstado.setForeground(Color.white);
+        this.jLabel1.setForeground(Color.white);
+        this.jLabel3.setForeground(Color.white);
+        this.jLabel4.setForeground(Color.white);
     }
 
     /**
@@ -27,10 +48,28 @@ public class home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         histograma = new javax.swing.JButton();
         anagrama = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        estadoVisual = new javax.swing.JPanel();
+        informeEstado = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        btnLogin = new javax.swing.JButton();
+        desconexion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, java.awt.Color.darkGray, null, null));
 
         histograma.setText("HISTOGRAMA");
         histograma.addActionListener(new java.awt.event.ActionListener() {
@@ -46,40 +85,214 @@ public class home extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(histograma))
+                    .addComponent(anagrama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(histograma)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(anagrama)
+                .addContainerGap(390, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel2.setLayout(null);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\sportak\\Documents\\GitHub\\ProjecteInterfazGrafica\\pied-piper-logo-3abde799f64a3b84-256x256.png")); // NOI18N
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(0, 20, 270, 230);
+
+        jLabel1.setText("Los Flautistas de Dr Lluis Simarro LaCabra");
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(10, 260, 250, 20);
+
+        estadoVisual.setBackground(new java.awt.Color(255, 0, 51));
+        estadoVisual.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        estadoVisual.setEnabled(false);
+
+        javax.swing.GroupLayout estadoVisualLayout = new javax.swing.GroupLayout(estadoVisual);
+        estadoVisual.setLayout(estadoVisualLayout);
+        estadoVisualLayout.setHorizontalGroup(
+            estadoVisualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 18, Short.MAX_VALUE)
+        );
+        estadoVisualLayout.setVerticalGroup(
+            estadoVisualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 18, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(estadoVisual);
+        estadoVisual.setBounds(0, 0, 20, 20);
+        jPanel2.add(informeEstado);
+        informeEstado.setBounds(20, 0, 180, 16);
+
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+
+        jLabel3.setText("Login:");
+
+        jScrollPane2.setViewportView(jTextPane1);
+
+        jLabel4.setText("Password:");
+
+        jScrollPane3.setViewportView(jTextPane2);
+
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        desconexion.setText("Desconectarse");
+        desconexion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desconexionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(desconexion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogin)
+                    .addComponent(desconexion))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(histograma)
-                .addGap(76, 76, 76)
-                .addComponent(anagrama)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(histograma)
-                    .addComponent(anagrama))
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void histogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histogramaActionPerformed      
-      vista.histograma histo= new vista.histograma();
-      histo.setVisible(true);
-    
-    }//GEN-LAST:event_histogramaActionPerformed
+    private void histogramaActionPerformed(java.awt.event.ActionEvent evt) {
+        if (this.loginExitoso == true) {
+            vista.histograma histo = new vista.histograma();
+            histo.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Debes logearte antes de acceder a las caracteristicas!");
+        }
+
+    }
 
     private void anagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anagramaActionPerformed
-        vista.anagrama anagrama = new vista.anagrama();
-        anagrama.setVisible(true);
+        if (this.loginExitoso == true) {
+            vista.anagrama anagrama = new vista.anagrama();
+            anagrama.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Debes logearte antes de acceder a las caracteristicas!");
+        }
     }//GEN-LAST:event_anagramaActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        
+        if(this.buscarUsuario(this.jTextPane1.getText(), this.jTextPane2.getText())){
+            System.out.println("LOGIN CORRECTO");
+            this.loginExitoso = true;
+            this.jTextPane1.setText("");
+            this.jTextPane2.setText("");
+            actualizar();
+        }else{
+            System.out.println("CREDENCIALES INCORRECTAS");
+        }
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void desconexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desconexionActionPerformed
+        this.loginExitoso=false;
+        actualizar();
+    }//GEN-LAST:event_desconexionActionPerformed
+
+    private boolean buscarUsuario(String usuario, String pass) {
+        File ficheroAbuscar = new File("usuarios.txt");
+        String linea;
+        String[] arrayAnalizado;
+        try {
+            Scanner sc = new Scanner(ficheroAbuscar);
+            while (sc.hasNext()) {
+                linea = sc.next();
+                arrayAnalizado = linea.split(";");
+                //System.out.println("COMPARANDO "+usuario+" CON "+usuario.length()+" CARACTERES VS "+arrayAnalizado[0]+" DE "+arrayAnalizado[0].length()+" CARACTERES");
+                if (arrayAnalizado[0].equalsIgnoreCase(usuario) && arrayAnalizado[1].equalsIgnoreCase(pass)) {
+                    //System.out.println("HAY COINCIDENCIA");
+                    return true;
+                }
+            }
+            sc.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+
+    }
+    private void actualizar(){
+        if(this.loginExitoso==true){
+            this.estadoVisual.setBackground(Color.green);
+            this.informeEstado.setText("Conexion garantizada!");
+        }else{
+            this.estadoVisual.setBackground(Color.red);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -110,14 +323,31 @@ public class home extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new home().setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton anagrama;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton desconexion;
+    private javax.swing.JPanel estadoVisual;
     private javax.swing.JButton histograma;
+    private javax.swing.JLabel informeEstado;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
     // End of variables declaration//GEN-END:variables
 }
