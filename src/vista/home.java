@@ -70,15 +70,15 @@ public class home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void histogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histogramaActionPerformed
-      
+    private void histogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_histogramaActionPerformed      
       vista.histograma histo= new vista.histograma();
       histo.setVisible(true);
-     
+    
     }//GEN-LAST:event_histogramaActionPerformed
 
     private void anagramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anagramaActionPerformed
-        // TODO add your handling code here:
+        vista.anagrama anagrama = new vista.anagrama();
+        anagrama.setVisible(true);
     }//GEN-LAST:event_anagramaActionPerformed
 
     /**

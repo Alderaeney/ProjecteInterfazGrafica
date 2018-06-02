@@ -5,6 +5,15 @@
  */
 package vista;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author mati
@@ -17,6 +26,7 @@ public class anagrama extends javax.swing.JFrame {
     public anagrama() {
         initComponents();
     }
+    public File rutaFich;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,31 +38,139 @@ public class anagrama extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        botonFichero = new javax.swing.JButton();
+        textoPalabra = new javax.swing.JTextField();
+        botonGenerar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setText("ANAGRAMA");
 
+        jLabel2.setText("Introduce una palabra para generar anagramas de esta!");
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel3.setText("PALABRA:");
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel4.setText("RutaFichero:");
+
+        botonFichero.setText("Eligir fichero");
+        botonFichero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFicheroActionPerformed(evt);
+            }
+        });
+
+        textoPalabra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoPalabraActionPerformed(evt);
+            }
+        });
+
+        botonGenerar.setText("Generar");
+        botonGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGenerarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(jLabel1)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(36, 36, 36)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonGenerar)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(botonFichero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(textoPalabra)))))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(textoPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(botonFichero))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(botonGenerar)
+                .addGap(41, 41, 41))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarActionPerformed
+        String contenido = this.textoPalabra.getText();
+        if (contenido.length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Tienes que introducir una palabra a buscar!");
+        }else{
+            if(this.rutaFich!=null){
+                try {
+                     
+                    String res=modelo.Anagrama.anagrama(contenido, this.rutaFich);
+                    JTextArea textArea = new JTextArea(6, 25);
+                    textArea.setText(res);
+                    textArea.setEditable(false);
+                    JScrollPane scrollPane = new JScrollPane(textArea);
+                    JOptionPane.showMessageDialog(rootPane, scrollPane);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(anagrama.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Tienes que introducir una ruta de archivo!");
+            }
+        }
+    }//GEN-LAST:event_botonGenerarActionPerformed
+
+    private void textoPalabraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoPalabraActionPerformed
+
+    }//GEN-LAST:event_textoPalabraActionPerformed
+
+    private void botonFicheroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFicheroActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.setVisible(true);
+        int returnVal = fc.showOpenDialog(jLabel1);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            this.rutaFich=file;
+            this.botonFichero.setText(file.getName());
+            
+            //This is where a real application would open the file.
+            System.out.println("Abriendo archivo" + file.getName());
+        } else {
+            System.out.println("Cancelado por usuario");
+        }
+    }//GEN-LAST:event_botonFicheroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,6 +208,12 @@ public class anagrama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonFichero;
+    private javax.swing.JButton botonGenerar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField textoPalabra;
     // End of variables declaration//GEN-END:variables
 }
