@@ -5,6 +5,9 @@
  */
 package vista;
 
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mati
@@ -30,7 +33,7 @@ public class histograma extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         procesaString = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        ejecutar = new javax.swing.JButton();
+        enviar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,9 +41,20 @@ public class histograma extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("HISTOGRAMA");
 
-        jLabel2.setText("Introduce palabra:");
+        procesaString.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                procesaStringActionPerformed(evt);
+            }
+        });
 
-        ejecutar.setText("Ejecutar");
+        jLabel2.setText("Introduce archivo:");
+
+        enviar.setText("Enviar");
+        enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -48,20 +62,19 @@ public class histograma extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(161, 161, 161))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(81, 81, 81)
-                                .addComponent(ejecutar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(procesaString, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addComponent(procesaString))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(enviar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,13 +85,33 @@ public class histograma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(procesaString, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(33, 33, 33)
-                .addComponent(ejecutar)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(enviar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
+        File file = new File(procesaString.getText());
+        try{
+            if (!file.exists()) {
+                throw new Exception("El fichero no existe.");
+            }
+            if (!file.isFile()) {
+                throw new Exception("No es un fichero.");
+            }
+            procesaHisto histo = new procesaHisto(file);
+            histo.setVisible(true);
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_enviarActionPerformed
+
+    private void procesaStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procesaStringActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_procesaStringActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,7 +149,7 @@ public class histograma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ejecutar;
+    private javax.swing.JButton enviar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField procesaString;
