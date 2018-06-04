@@ -75,6 +75,7 @@
                       <Component id="histograma" alignment="1" max="32767" attributes="0"/>
                       <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                      <Component id="antivirus" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -87,6 +88,8 @@
                   <Component id="histograma" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="anagrama" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="antivirus" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel5" min="-2" pref="137" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -130,6 +133,14 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Build 201609300101"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="antivirus">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ANTIVIRUS"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="antivirusActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -54,6 +54,7 @@ public class home extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        antivirus = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -93,6 +94,13 @@ public class home extends javax.swing.JFrame {
 
         jLabel7.setText("Build 201609300101");
 
+        antivirus.setText("ANTIVIRUS");
+        antivirus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                antivirusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -104,7 +112,8 @@ public class home extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(histograma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(antivirus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,6 +123,8 @@ public class home extends javax.swing.JFrame {
                 .addComponent(histograma)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(anagrama)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(antivirus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -275,6 +286,15 @@ public class home extends javax.swing.JFrame {
         actualizar();
     }//GEN-LAST:event_desconexionActionPerformed
 
+    private void antivirusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_antivirusActionPerformed
+        if (this.loginExitoso == true) {
+            vista.antivirus antivirus=new vista.antivirus();
+            antivirus.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Debes logearte antes de acceder a las caracteristicas!");
+        }
+    }//GEN-LAST:event_antivirusActionPerformed
+
     private boolean buscarUsuario(String usuario, String pass) {
         File ficheroAbuscar = new File("usuarios.txt");
         String linea;
@@ -346,6 +366,7 @@ public class home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton anagrama;
+    private javax.swing.JButton antivirus;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton desconexion;
     private javax.swing.JPanel estadoVisual;
